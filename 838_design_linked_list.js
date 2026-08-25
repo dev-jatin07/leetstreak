@@ -10,13 +10,16 @@ var MyLinkedList = function() {
 MyLinkedList.prototype.get = function(index) {
     let temp = this.head;
     let i = 0;
-    while (temp!=null){
-        if (i === index){
-            return temp.val
+
+    while (temp !== null) {
+        if (i === index) {
+            return temp.val;
         }
-        temp = temp.next
+
+        temp = temp.next;
         i++;
     }
+
     return -1;
 };
 
@@ -28,7 +31,7 @@ MyLinkedList.prototype.addAtHead = function(val) {
     let node = new ListNode(val);
 
     node.next = this.head;
-this.head = node;
+    this.head = node;
 
     this.size++;
 };
@@ -40,15 +43,20 @@ this.head = node;
 MyLinkedList.prototype.addAtTail = function(val) {
     let node = new ListNode(val);
 
-    if (this.head === null){
-        this.head = node
+    if (this.head === null) {
+        this.head = node;
     } else {
         let temp = this.head;
-       while (temp.next !== null) {
-    temp = temp.next;
-}
+
+        // Last node tak jao
+        while (temp.next !== null) {
+            temp = temp.next;
+        }
+
         temp.next = node;
     }
+
+    this.size++;
 };
 
 /** 
@@ -61,7 +69,6 @@ MyLinkedList.prototype.addAtIndex = function(index, val) {
 
     let newNode = new ListNode(val);
 
-    // Index 0 = add at head
     if (index === 0) {
         newNode.next = this.head;
         this.head = newNode;
@@ -72,13 +79,12 @@ MyLinkedList.prototype.addAtIndex = function(index, val) {
     let temp = this.head;
     let i = 0;
 
-    // Previous node tak jao
+    // index se ek pehle node tak jao
     while (i < index - 1) {
         temp = temp.next;
         i++;
     }
 
-    // Connections
     newNode.next = temp.next;
     temp.next = newNode;
 
@@ -94,7 +100,6 @@ MyLinkedList.prototype.deleteAtIndex = function(index) {
         return;
     }
 
-    // Delete head
     if (index === 0) {
         this.head = this.head.next;
         this.size--;
@@ -104,23 +109,12 @@ MyLinkedList.prototype.deleteAtIndex = function(index) {
     let temp = this.head;
     let i = 0;
 
-    // Previous node tak jao
     while (i < index - 1) {
         temp = temp.next;
         i++;
     }
 
-    // Delete the next node
     temp.next = temp.next.next;
 
     this.size--;
 };
-/** 
- * Your MyLinkedList object will be instantiated and called as such:
- * var obj = new MyLinkedList()
- * var param_1 = obj.get(index)
- * obj.addAtHead(val)
- * obj.addAtTail(val)
- * obj.addAtIndex(index,val)
- * obj.deleteAtIndex(index)
- */
