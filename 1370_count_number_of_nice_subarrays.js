@@ -19,5 +19,5 @@ var numberOfSubarrays = function(nums, k) {
         res += freq;
         map.set(sum,(map.get(sum)||0)+1);
     }
-    return res
+    return res;
 };
