@@ -5,6 +5,9 @@
  */
 var isAnagram = function(s, t) {
     let map = new Map();
+    if (s.length !== t.length) {
+    return false;
+}
     for(let i = 0; i < s.length ; i++){
         if(map.has(s[i])){
             map.set(s[i],map.get(s[i])+1);
